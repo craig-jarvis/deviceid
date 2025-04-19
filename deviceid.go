@@ -4,6 +4,7 @@ import (
 	"crypto/sha256"
 	"errors"
 	"fmt"
+	"net"
 	"os"
 	"runtime"
 	"slices"
@@ -14,6 +15,7 @@ type deviceIdBase interface {
 	GetDeviceIdWithDefaults() (string, error)
 	GetDeviceId() (string, error)
 	AddMachineName() error
+	AddMacAddress(excludeDockerBridge bool) error
 	AddOsVersion() error
 	AddSerialNumber() error
 	AddSystemUuid() error
@@ -71,6 +73,27 @@ func (b *Builder) AddMachineName() error {
 	if b.Debug {
 		fmt.Println(hostname)
 	}
+	return nil
+}
+
+func (b *Builder) AddMacAddress(excludeDockerBridge bool) error {
+	inets, err := net.Interfaces()
+	if err != nil {
+		return err
+	}
+	var as []string
+	for _, ifa := range inets {
+		if !excludeDockerBridge && ifa.Name != "docker0" {
+			a := ifa.HardwareAddr.String()
+			if a != "" && a != "000000000000" {
+				as = append(as, strings.ToUpper(a))
+			}
+		}
+	}
+
+	slices.Sort(as)
+	b.components[_COMPONENT_MACADDRESS_] = strings.Join(as, ",")
+
 	return nil
 }
 

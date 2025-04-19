@@ -28,6 +28,23 @@ func TestGetDeviceIdWithJustComputerName(t *testing.T) {
 	}
 }
 
+func TestAddMacAddress(t *testing.T) {
+	bldr := NewBuilder()
+	bldr.AddMacAddress(false)
+	bldr.components[_COMPONENT_MACADDRESS_] = "12:34:56:AB:CD:EF"
+
+	d, err := bldr.GetDeviceId()
+	if err != nil {
+		t.Errorf("Failed to get device id, %v", err)
+	}
+
+	want := "0e8aa98797e189d504b13506b27aace3c22f181d4b320ffc9ff9beef4affddb6"
+
+	if d != want {
+		t.Errorf("incorrect hash generated. got: [%s], want: [%s]", d, want)
+	}
+}
+
 func TestGetDeviceIdWithJustOsVersion(t *testing.T) {
 	bldr := NewBuilder()
 	bldr.components[_COMPONENT_OSVERSION_] = "Microsoft Windows [Version 10.0.26100.3775]"

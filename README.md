@@ -49,6 +49,7 @@ if err != nil {
 ### What can you include in a device identifier
 
 - `AddMachineName` adds the host name to the device identifier.
+- `AddMacAddress` adds all the MAC addresses to the device identifier. Method supports excluding the default docker bridge interface named "docker0".
 - `AddOsVersion` adds the current OS version to the device identifier.
 - `AddSerialNumber` adds the motherboard serial number to the device identifier.
 - `AddSystemUuid` adds the system UUID to the device identifier.

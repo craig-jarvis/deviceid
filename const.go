@@ -13,4 +13,5 @@ const (
 	_COMPONENT_SYSTEMUUID_   = "SystemUuid"
 	_COMPONENT_MACHINEID_    = "MachineId"
 	_COMPONENT_MACHINEGUID_  = "MachineGuid"
+	_COMPONENT_MACADDRESS_   = "MacAddress"
 )
