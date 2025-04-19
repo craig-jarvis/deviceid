@@ -64,7 +64,9 @@ func orderAndJoinMap(m map[string]string, trace bool) string {
 
 	var values []string
 	for _, k := range keys {
-		values = append(values, m[k])
+		if m[k] != "" {
+			values = append(values, m[k])
+		}
 	}
 
 	r := strings.Join(values, ",")
