@@ -38,6 +38,8 @@ if err != nil {
 
 alternatively, you can use the opinionated `GetDeviceIdWithDefaults` method.
 
+This method includes the `AddMachineName`, `AddSerialNumber`, and `AddSystemUuid` elements. On windows, it also includes `AddWindowsDeviceId` and `AddWindowsMachineGuid`
+
 ```
 bldr := deviceid.NewBuilder()
 d, err = bldr.GetDeviceIdWithDefaults()
