@@ -71,9 +71,9 @@ func (b *Builder) AddSystemUuid() error {
 }
 
 func (b *Builder) AddWindowsDeviceId() error {
-	return fmt.Errorf("AddWindowsDeviceId not supported on %s", runtime.GOOS)
+	return fmt.Errorf("AddWindowsDeviceId not supported on %s\n", runtime.GOOS)
 }
 
 func (b *Builder) AddWindowsMachineGuid() error {
-	return fmt.Errorf("AddWindowsMachineGuid not supported on %s", runtime.GOOS)
+	return fmt.Errorf("AddWindowsMachineGuid not supported on %s\n", runtime.GOOS)
 }
