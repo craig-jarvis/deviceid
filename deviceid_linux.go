@@ -22,13 +22,13 @@ func (b *Builder) AddOsVersion() error {
 	}
 
 	if osVer == "" {
-		b.components["OSVersion"] = _OSVER_UNKNOWN_
+		b.components[_COMPONENT_OSVERSION_] = _OSVER_UNKNOWN_
 	} else {
-		b.components["OSVersion"] = osVer
+		b.components[_COMPONENT_OSVERSION_] = osVer
 	}
 
 	if b.Debug {
-		fmt.Println(b.components["OSVersion"])
+		fmt.Println(b.components[_COMPONENT_OSVERSION_])
 	}
 
 	return nil
@@ -40,13 +40,13 @@ func (b *Builder) AddSerialNumber() error {
 	si.GetSysInfo()
 
 	if si.Product.Serial == "System Serial Number" || si.Product.Serial == "" {
-		b.components["SerialNumber"] = _SERIALNUMBER_UNKNOWN_
+		b.components[_COMPONENT_SERIALNUMBER_] = _SERIALNUMBER_UNKNOWN_
 	} else {
-		b.components["SerialNumber"] = si.Product.Serial
+		b.components[_COMPONENT_SERIALNUMBER_] = si.Product.Serial
 	}
 
 	if b.Debug {
-		fmt.Println(b.components["SerialNumber"])
+		fmt.Println(b.components[_COMPONENT_SERIALNUMBER_])
 	}
 
 	return nil

@@ -47,7 +47,7 @@ func (b *Builder) AddMachineName() error {
 		return err
 	}
 
-	b.components["ComputerName"] = hostname
+	b.components[_COMPONENT_COMPUTERNAME_] = hostname
 	if b.Debug {
 		fmt.Println(hostname)
 	}

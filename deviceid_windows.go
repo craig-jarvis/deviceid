@@ -29,10 +29,10 @@ type WmiComputerSystemProduct struct {
 func (b *Builder) AddOsVersion() error {
 	osVer, err := getWmiOperatingSystem()
 	if err != nil {
-		b.components["OsVersion"] = _OSVER_UNKNOWN_
+		b.components[_COMPONENT_OSVERSION_] = _OSVER_UNKNOWN_
 	}
 
-	b.components["OsVersion"] = osVer
+	b.components[_COMPONENT_OSVERSION_] = osVer
 
 	if b.Debug {
 		fmt.Println(osVer)
@@ -46,7 +46,7 @@ func (b *Builder) AddSerialNumber() error {
 		getWmiComputerSystemProduct()
 	}
 
-	b.components["SerialNumber"] = computerSystemData.IdentifyingNumber
+	b.components[_COMPONENT_SERIALNUMBER_] = computerSystemData.IdentifyingNumber
 	if b.Debug {
 		fmt.Println(computerSystemData.IdentifyingNumber)
 	}
@@ -60,7 +60,7 @@ func (b *Builder) AddSystemUuid() error {
 
 	r := strings.ToLower(computerSystemData.UUID)
 
-	b.components["SystemUuid"] = r
+	b.components[_COMPONENT_SYSTEMUUID_] = r
 	if b.Debug {
 		fmt.Println(r)
 	}
@@ -74,7 +74,7 @@ func (b *Builder) AddWindowsDeviceId() error {
 	}
 	defer k.Close()
 
-	s, _, err := k.GetStringValue("MachineId")
+	s, _, err := k.GetStringValue(_COMPONENT_MACHINEID_)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -97,7 +97,7 @@ func (b *Builder) AddWindowsMachineGuid() error {
 	}
 	defer k.Close()
 
-	s, _, err := k.GetStringValue("MachineGuid")
+	s, _, err := k.GetStringValue(_COMPONENT_MACHINEGUID_)
 	if err != nil {
 		log.Fatal(err)
 	}
