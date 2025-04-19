@@ -5,11 +5,13 @@ import (
 	"errors"
 	"fmt"
 	"os"
+	"runtime"
 	"slices"
 	"strings"
 )
 
 type deviceIdBase interface {
+	GetDeviceIdWithDefaults() (string, error)
 	GetDeviceId() (string, error)
 	AddMachineName() error
 	AddOsVersion() error
@@ -30,6 +32,24 @@ func NewBuilder() *Builder {
 		components: make(map[string]string),
 		Debug:      false,
 	}
+}
+
+func (b *Builder) GetDeviceIdWithDefaults() (string, error) {
+
+	b.AddMachineName()
+	b.AddSerialNumber()
+	b.AddSystemUuid()
+	switch runtime.GOOS {
+	case "linux":
+	case "windows":
+		b.AddWindowsDeviceId()
+		b.AddWindowsMachineGuid()
+	default:
+		return "", fmt.Errorf("deviceid does not support %s", runtime.GOOS)
+	}
+
+	jStr := orderAndJoinMap(b.components, b.Trace)
+	return generateHashString(jStr)
 }
 
 func (b *Builder) GetDeviceId() (string, error) {

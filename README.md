@@ -36,6 +36,16 @@ if err != nil {
 }
 ```
 
+alternatively, you can use the opinionated `GetDeviceIdWithDefaults` method.
+
+```
+bldr := deviceid.NewBuilder()
+d, err = bldr.GetDeviceIdWithDefaults()
+if err != nil {
+	// handle err
+}
+```
+
 ### What can you include in a device identifier
 
 - `AddMachineName` adds the host name to the device identifier.
