@@ -54,3 +54,8 @@ if err != nil {
 - `AddSystemUuid` adds the system UUID to the device identifier.
 - `AddWindowsDeviceId` adds the Windows Device ID (also known as Machine ID or Advertising ID) to the device identifier. This value is the one displayed as "Device ID" in the Windows Device Specifications UI.
 - `AddWindowsMachineGuid` adds the machine GUID from `HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Cryptography` to the device identifier.
+
+## License and copyright
+
+Copyright (c) 2025 Craig Jarvis
+Distributed under the [MIT License](http://opensource.org/licenses/MIT). Refer to LICENSE for more information.
