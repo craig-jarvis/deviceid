@@ -38,7 +38,6 @@ func NewBuilder() *Builder {
 
 func (b *Builder) GetDeviceIdWithDefaults() (string, error) {
 
-	b.AddMachineName()
 	b.AddSerialNumber()
 	b.AddSystemUuid()
 	switch runtime.GOOS {
