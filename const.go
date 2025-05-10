@@ -1,6 +1,6 @@
 package deviceid
 
-const version = "0.1.1"
+const version = "0.1.3"
 
 const (
 	_OSVER_UNKNOWN_        = "unknown_osver"
