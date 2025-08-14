@@ -1,11 +1,11 @@
 module github.com/craig-jarvis/deviceid
 
-go 1.24.3
+go 1.25.0
 
 require (
 	github.com/yusufpapurcu/wmi v1.2.4
 	github.com/zcalusic/sysinfo v1.1.3
-	golang.org/x/sys v0.33.0
+	golang.org/x/sys v0.35.0
 )
 
 require (
